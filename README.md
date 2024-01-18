@@ -74,6 +74,36 @@ go-rotate generate --size 2048
 go-rotate fetch --name my_new_key
 ```
 
+## Command Line Flags
+
+```bash
+❯ ./go-rotate --help
+
+┏┓┏┓  ┏┓┏┓╋┏┓╋┏┓
+┗┫┗┛  ┛ ┗┛┗┗┻┗┗
+ ┛
+
+
+go-rotate is a tool for generating, storing, and retrieving
+public/private RSA key pairs using AWS Parameter store.
+
+Usage:
+  go-rotate [flags]
+  go-rotate [command]
+
+Available Commands:
+  completion  Generate the autocompletion script for the specified shell
+  fetch       Downloads your public/private key pair
+  generate    Generates a new public/private key pair, but does not store it
+  help        Help about any command
+  store       Generates and stores a public/private key pair
+
+Flags:
+  -h, --help   help for go-rotate
+
+Use "go-rotate [command] --help" for more information about a command.
+```
+
 ## Contributing
 
 Contributions to RSA Key Rotator CLI are welcome! Please read our
