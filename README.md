@@ -1,6 +1,6 @@
 # RSA Key Rotator CLI 🔄
 
-```bash              
+```bash
 ┏┓┏┓  ┏┓┏┓╋┏┓╋┏┓
 ┗┫┗┛  ┛ ┗┛┗┗┻┗┗ 
  ┛     
@@ -20,7 +20,6 @@
 ![Lint](https://github.com/kmesiab/go-key-rotator-cli/actions/workflows/go-lint.yml/badge.svg)
 ![Test](https://github.com/kmesiab/go-key-rotator-cli/actions/workflows/go-test.yml/badge.svg)
 [![Go Report Card](https://img.shields.io/badge/go%20report-A+-brightgreen.svg?style=flat)](https://goreportcard.com/report/github.com/kmesiab/go-key-rotator-cli)
-
 
 ## Overview
 
