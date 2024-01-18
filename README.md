@@ -1,16 +1,17 @@
 # RSA Key Rotator CLI 🔄
 
 ```bash
+❯ ./go-rotate store --name kittens
 ┏┓┏┓  ┏┓┏┓╋┏┓╋┏┓
-┗┫┗┛  ┛ ┗┛┗┗┻┗┗ 
- ┛     
- 
- $ go-rotate --path /my/parameter/store/path --name my_key_name
- 
- 🔐 Generated and stored keys: 
- 
-    /my/parameter/store/path/my_key_name_private.pem
-    /my/parameter/store/path/my_key_name_public.pem
+┗┫┗┛  ┛ ┗┛┗┗┻┗┗
+ ┛
+
+Rotating new keys...
+
+🔐 Generated and stored keys:
+
+   💾 Public Key: kittens_pub.pem
+   💾 Private Key: kittens_priv.pem
 ```
 
 ![Golang](https://img.shields.io/badge/Go-00add8.svg?labelColor=171e21&style=for-the-badge&logo=go)
@@ -55,22 +56,24 @@ go get github.com/kmesiab/go-key-rotator-cli
 Once installed, you can use the `go-rotate` command to manage your
 RSA keys. Common commands include:
 
-- **Generate a new RSA key**:
+- **Store a key in AWS Parameter Store**:
+
+```bash
+go-rotate store --name my_new_key
+```
+
+
+- **Generate a new RSA key (Not yet implemented)**:
 
 ```bash
 go-rotate generate --size 2048
 ```
 
-- **Rotate an existing RSA key**:
+
+- **Get a previously generated RSA key (Not yet implemented)**:
 
 ```bash
-go-rotate rotate --key /path/to/your/key.pem
-```
-
-- **Store a key in AWS Parameter Store**:
-
-```bash
-go-rotate store --key /path/to/your/key.pem --name mykey
+go-rotate fetch --name my_new_key
 ```
 
 ## Contributing
