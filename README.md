@@ -62,13 +62,11 @@ RSA keys. Common commands include:
 go-rotate store --name my_new_key
 ```
 
-
 - **Generate a new RSA key (Not yet implemented)**:
 
 ```bash
 go-rotate generate --size 2048
 ```
-
 
 - **Get a previously generated RSA key (Not yet implemented)**:
 
