@@ -7,18 +7,13 @@ all: install-tools build test lint
 # Build Targets
 build: go-mod-tidy go-build
 
-# Build and run the application
-build-and-run:
-	@echo ">>>>> Starting app"
-	@go mod tidy -go=1.21 && go build -o key-rotator && ./key-rotator
-
 go-mod-tidy:
 	@echo "🧹 Running go mod tidy"
-	@go mod tidy -go=1.21
+	@go mod tidy -go=1.21.5
 
 go-build:
 	@echo "🔨 Building Go binaries"
-	@go build -ldflags="-s -w" ./...
+	@go build -ldflags="-s -w" -o go-rotate
 
 # Test Targets
 test: test-basic
