@@ -52,8 +52,8 @@ func (app GenerateCommand) Run(cmd *cobra.Command, _ []string) {
 		return
 	}
 
-	privateKeyPEMBytes := rotator.EncodePrivateKeyToPEM(privateKey)
 	publicKeyPEMBytes, err := rotator.EncodePublicKeyToPEM(publicKey)
+	privateKeyPEMBytes := rotator.EncodePrivateKeyToPEM(privateKey)
 
 	if err != nil {
 		klog.Logf("Failed to encode RSA public key to PEM format: %s\n", err).Error()
