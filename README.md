@@ -68,7 +68,7 @@ go-rotate store --name my_new_key
 go-rotate generate --name kittens --size 2048
 ```
 
-- **Get a previously generated RSA key (Not yet implemented)**:
+- **Get a previously generated RSA key**:
 
 ```bash
 go-rotate fetch --name taco_truck
