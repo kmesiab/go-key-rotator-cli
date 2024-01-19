@@ -48,7 +48,8 @@ retrieval 🛡️.
 Install RSA Key Rotator CLI using the following Go command:
 
 ```bash
-go get github.com/kmesiab/go-key-rotator-cli
+go install github.com/kmesiab/go-key-rotator-cli
+alias go-rotate=go-key-rotator-cli
 ```
 
 ## Usage
@@ -56,19 +57,19 @@ go get github.com/kmesiab/go-key-rotator-cli
 Once installed, you can use the `go-rotate` command to manage your
 RSA keys. Common commands include:
 
-- **Store a key in AWS Parameter Store**:
+### 🔐 Store a key in AWS Parameter Store
 
 ```bash
 go-rotate store --name my_new_key
 ```
 
-- **Generate a new RSA key**:
+### 🔑 Generate a new RSA key pair
 
 ```bash
 go-rotate generate --name kittens --size 2048
 ```
 
-- **Get a previously generated RSA key**:
+### 📆 Get a previously generated RSA key
 
 ```bash
 go-rotate fetch --name taco_truck
