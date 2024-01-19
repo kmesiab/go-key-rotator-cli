@@ -4,6 +4,8 @@ import (
 	"crypto/rsa"
 	"fmt"
 
+	"github.com/aws/aws-sdk-go/aws/session"
+	rotator "github.com/kmesiab/go-key-rotator"
 	klog "github.com/kmesiab/go-klogger"
 	"github.com/spf13/cobra"
 
@@ -22,6 +24,9 @@ var (
 
 type RotateCommand struct {
 	app.Command
+
+	Session    *session.Session
+	KeyRotator types.KeyRotatorInterface
 }
 
 func (app RotateCommand) Run(cmd *cobra.Command, _ []string) {
@@ -37,8 +42,8 @@ func (app RotateCommand) Run(cmd *cobra.Command, _ []string) {
 	privKeyName := aws.MakePrivateKeyName(args.GetName(cmd))
 
 	// Generate and rotate the keys
-	privateKey, publicKey, err = app.KeyRotator.RotatePrivateKeyAndPublicKey(
-		pubKeyName, privKeyName, app.AWSSession,
+	privateKey, publicKey, err = app.KeyRotator.Rotate(
+		pubKeyName, privKeyName, rotator.DefaultKeySize,
 	)
 
 	if err != nil {
