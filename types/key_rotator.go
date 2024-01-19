@@ -1,8 +1,6 @@
 package types
 
-import (
-	"crypto/rsa"
-)
+import "crypto/rsa"
 
 type KeyRotatorInterface interface {
 	Rotate(
