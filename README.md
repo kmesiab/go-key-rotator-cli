@@ -57,13 +57,13 @@ alias go-rotate=go-key-rotator-cli
 Once installed, you can use the `go-rotate` command to manage your
 RSA keys. Common commands include:
 
-### 🔐 Store a key in AWS Parameter Store
+### 🔐 Generate and Store a key in AWS Parameter Store
 
 ```bash
 go-rotate store --name my_new_key
 ```
 
-### 🔑 Generate a new RSA key pair
+### 🔑 Generate and Save a new RSA key pair to a file
 
 ```bash
 go-rotate generate --name kittens --size 2048
