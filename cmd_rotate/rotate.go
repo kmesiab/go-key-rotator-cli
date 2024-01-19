@@ -25,7 +25,7 @@ type RotateCommand struct {
 }
 
 func (app RotateCommand) Run(cmd *cobra.Command, _ []string) {
-	klog.Logf("Rotating new keys!").Info()
+	klog.Logf("Rotating new keys...").Info()
 
 	if !aws.IsValidParameterStoreName(args.GetName(cmd)) {
 		klog.Logf(aws.ParameterStoreNamingRequirementsString, args.GetName(cmd)).Error()
@@ -60,16 +60,11 @@ func (app RotateCommand) Run(cmd *cobra.Command, _ []string) {
 	}
 
 	fmt.Printf(`
-Successfully rotated the keys! 🔐
-
-A public and private key were written to AWS Parameter Store
-as well as saved in the files:
+🔐 Generated and stored keys:
 	
-💾 Public Key: %s
-💾 Private Key: %s
-	
-Done!	
-		`,
+   💾 Public Key: %s
+   💾 Private Key: %s
+`,
 		pubKeyName,
 		privKeyName,
 	)
