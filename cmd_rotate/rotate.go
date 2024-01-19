@@ -52,7 +52,7 @@ func (app RotateCommand) Run(cmd *cobra.Command, _ []string) {
 	}
 
 	// Generate and rotate the keys
-	privateKey, publicKey, err = app.KeyRotator.Rotate(pubKeyName, privKeyName, int(sizeInt))
+	privateKey, publicKey, err = app.KeyRotator.Rotate(privKeyName, pubKeyName, int(sizeInt))
 
 	if err != nil {
 		klog.Logf("Error rotating keys: %s\n", err).Error()
