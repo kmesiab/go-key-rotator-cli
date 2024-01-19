@@ -74,10 +74,7 @@ func NewRotateCommand(sess *session.Session) cmd_rotate.RotateCommand {
 		Session: sess,
 	}
 
-	cmd.KeyRotator = &rotator.KeyRotator{
-		ParamStore: rotator.NewAWSParameterStore(sess),
-	}
-
+	cmd.KeyRotator = rotator.NewKeyRotator(rotator.NewAWSParameterStore(sess))
 	cmd.AWSSession = sess
 
 	return cmd
@@ -86,10 +83,7 @@ func NewRotateCommand(sess *session.Session) cmd_rotate.RotateCommand {
 func NewGenerateCommand(sess *session.Session) cmd_generate.GenerateCommand {
 	cmd := cmd_generate.GenerateCommand{}
 
-	cmd.KeyRotator = rotator.NewKeyRotator(
-		rotator.NewAWSParameterStore(sess),
-	)
-
+	cmd.KeyRotator = rotator.NewKeyRotator(rotator.NewAWSParameterStore(sess))
 	cmd.AWSSession = sess
 
 	return cmd
@@ -98,9 +92,7 @@ func NewGenerateCommand(sess *session.Session) cmd_generate.GenerateCommand {
 func NewFetchCommand(sess *session.Session) cmd_fetch.FetchCommand {
 	cmd := cmd_fetch.FetchCommand{}
 
-	cmd.KeyRotator = rotator.NewKeyRotator(
-		rotator.NewAWSParameterStore(sess),
-	)
+	cmd.KeyRotator = rotator.NewKeyRotator(rotator.NewAWSParameterStore(sess))
 	cmd.AWSSession = sess
 
 	return cmd

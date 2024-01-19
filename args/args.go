@@ -136,3 +136,7 @@ func AttachSizeFlag(cmd *cobra.Command) error {
 func GetName(cmd *cobra.Command) string {
 	return cmd.Flag(FlagStringName).Value.String()
 }
+
+func GetSize(cmd *cobra.Command) string {
+	return cmd.Flag(FlagStringSize).Value.String()
+}

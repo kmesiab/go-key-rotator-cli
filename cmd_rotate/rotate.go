@@ -3,9 +3,9 @@ package cmd_rotate
 import (
 	"crypto/rsa"
 	"fmt"
+	"strconv"
 
 	"github.com/aws/aws-sdk-go/aws/session"
-	rotator "github.com/kmesiab/go-key-rotator"
 	klog "github.com/kmesiab/go-klogger"
 	"github.com/spf13/cobra"
 
@@ -17,7 +17,6 @@ import (
 )
 
 var (
-	err        error
 	privateKey *rsa.PrivateKey
 	publicKey  *rsa.PublicKey
 )
@@ -41,10 +40,19 @@ func (app RotateCommand) Run(cmd *cobra.Command, _ []string) {
 	pubKeyName := aws.MakePublicKeyName(args.GetName(cmd))
 	privKeyName := aws.MakePrivateKeyName(args.GetName(cmd))
 
+	size := args.GetSize(cmd)
+	sizeInt, err := strconv.ParseInt(size, 10, 64)
+
+	if err != nil || sizeInt < 2048 || sizeInt > 4096 {
+
+		klog.Logf("Invalid key size: %s. Key size must "+
+			"be between %d and %d bits.", size, 2048, 4096).Error()
+
+		return
+	}
+
 	// Generate and rotate the keys
-	privateKey, publicKey, err = app.KeyRotator.Rotate(
-		pubKeyName, privKeyName, rotator.DefaultKeySize,
-	)
+	privateKey, publicKey, err = app.KeyRotator.Rotate(pubKeyName, privKeyName, int(sizeInt))
 
 	if err != nil {
 		klog.Logf("Error rotating keys: %s\n", err).Error()

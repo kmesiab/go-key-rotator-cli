@@ -372,3 +372,13 @@ func TestAttachSizeFlag(t *testing.T) {
 	assert.Equal(t, args.FlagStringSizeShorthand, flag.Shorthand)
 	assert.Equal(t, strconv.Itoa(args.DefaultKeySize), flag.DefValue)
 }
+
+func TestGetSize(t *testing.T) {
+	cmd := &cobra.Command{}
+	cmd.Flags().String(args.FlagStringSize, "10", "")
+	size := args.GetSize(cmd)
+	expectedSize := "10"
+	if size != expectedSize {
+		t.Errorf("Expected size %s, but got %s", expectedSize, size)
+	}
+}
