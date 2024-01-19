@@ -5,17 +5,17 @@ import (
 	"os"
 
 	"github.com/aws/aws-sdk-go/aws/session"
+	rotator "github.com/kmesiab/go-key-rotator"
 	log "github.com/kmesiab/go-klogger"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+
+	"github.com/aws/aws-sdk-go/aws"
 
 	"github.com/kmesiab/go-key-rotator-cli/args"
 	"github.com/kmesiab/go-key-rotator-cli/cmd_fetch"
 	"github.com/kmesiab/go-key-rotator-cli/cmd_generate"
 	"github.com/kmesiab/go-key-rotator-cli/cmd_rotate"
-	"github.com/kmesiab/go-key-rotator-cli/types"
-
-	"github.com/aws/aws-sdk-go/aws"
 )
 
 var rootCmd = &cobra.Command{
@@ -70,9 +70,14 @@ func main() {
 }
 
 func NewRotateCommand(sess *session.Session) cmd_rotate.RotateCommand {
-	cmd := cmd_rotate.RotateCommand{}
+	cmd := cmd_rotate.RotateCommand{
+		Session: sess,
+	}
 
-	cmd.KeyRotator = types.KeyRotator{}
+	cmd.KeyRotator = &rotator.KeyRotator{
+		ParamStore: rotator.NewAWSParameterStore(sess),
+	}
+
 	cmd.AWSSession = sess
 
 	return cmd
@@ -81,7 +86,10 @@ func NewRotateCommand(sess *session.Session) cmd_rotate.RotateCommand {
 func NewGenerateCommand(sess *session.Session) cmd_generate.GenerateCommand {
 	cmd := cmd_generate.GenerateCommand{}
 
-	cmd.KeyRotator = types.KeyRotator{}
+	cmd.KeyRotator = rotator.NewKeyRotator(
+		rotator.NewAWSParameterStore(sess),
+	)
+
 	cmd.AWSSession = sess
 
 	return cmd
@@ -90,7 +98,9 @@ func NewGenerateCommand(sess *session.Session) cmd_generate.GenerateCommand {
 func NewFetchCommand(sess *session.Session) cmd_fetch.FetchCommand {
 	cmd := cmd_fetch.FetchCommand{}
 
-	cmd.KeyRotator = types.KeyRotator{}
+	cmd.KeyRotator = rotator.NewKeyRotator(
+		rotator.NewAWSParameterStore(sess),
+	)
 	cmd.AWSSession = sess
 
 	return cmd

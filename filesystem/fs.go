@@ -19,7 +19,7 @@ func WriteAllKeysToFile(result *types.Rotation, keyRotator types.KeyRotatorInter
 	privKeyFileName := aws.GetFilenameFromParameterStorePath(result.PrivateKeyName)
 	pubKeyFileName := aws.GetFilenameFromParameterStorePath(result.PublicKeyName)
 
-	if err := WritePEMToFile(privKeyFileName, keyRotator.EncodePrivateKeyToPEM(result.PrivateKey)); err != nil {
+	if err := WritePEMToFile(privKeyFileName, rotator.EncodePrivateKeyToPEM(result.PrivateKey)); err != nil {
 		return fmt.Errorf("error writing private key to file: %s\n", err)
 	}
 
