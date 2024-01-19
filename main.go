@@ -45,7 +45,7 @@ func main() {
 		sess *session.Session
 	)
 
-	config := aws.NewConfig().WithRegion("us-west-2")
+	config := aws.NewConfig() //.WithRegion("us-west-2")
 	if sess, err = session.NewSession(config); err != nil {
 		fmt.Printf("Error creating AWS config: %s\n", err)
 
